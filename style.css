@@ -470,10 +470,6 @@ section.main .content span.article-info {
   font-size: 3em;
 }
 
-#links section.header .content a:hover .name {
-  color: #b51a1a;
-}
-
 #links section.main .content {
   text-align: center;
 }
