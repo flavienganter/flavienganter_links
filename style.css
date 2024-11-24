@@ -470,24 +470,8 @@ section.main .content span.article-info {
   font-size: 3em;
 }
 
-#links section.header .ext {
-  font-size: 2em;
-  font-weight: 700;
-  font-style: italic;
-  color: #d5d4d4;
-  opacity: 0;
-}
-
 #links section.header .content a:hover .name {
   color: #b51a1a;
-}
-
-#links section.header .content a:hover .ext {
-  opacity: 1;
-}
-
-#links section.header .name:hover::after {
-  opacity: 0;
 }
 
 #links section.main .content {
