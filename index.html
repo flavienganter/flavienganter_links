@@ -1,97 +1,143 @@
 <!DOCTYPE html>
-<html lang="en-US">
-
+<html lang="en">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flavien Ganter</title>
+<meta name="author" content="Flavien Ganter">
+<meta name="description" content="Flavien Ganter, elsewhere on the web.">
+<link rel="canonical" href="https://www.flavienganter.me/">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
+<!-- Google Fonts: Unica One (name + links), Newsreader (text, ❡) — same as flavienganter.com -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Unica+One&display=swap" rel="stylesheet">
 
-    <meta name="author" content="Flavien Ganter">
-    <meta name="title-en" content="Flavien Ganter" />
-    <meta name="title-fr" content="Flavien Ganter" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <title>Flavien Ganter</title>
+<script>
+  (function(){
+    var l = 'en';
+    try { l = localStorage.getItem('lang') || ((navigator.language||'').slice(0,2)==='fr' ? 'fr' : 'en'); } catch(e){}
+    document.documentElement.lang = l;
+  })();
+</script>
 
-    <link rel="canonical" href="https://www.flavienganter.me/">
+<style>
+  /* One narrow column, vertically centred: name, two rows of links, ❡. */
+  :root{
+    --paper:#FCFBF7;
+    --ink:#1A1A1A;
+    --ink-soft:#6B6B6B;
+    --ink-faint:#9A9A9A;
+    --line:#DEDBD3;
+    --accent:#B51A1A;
+    --accent-soft:rgba(181,26,26,.28);
+    --serif:"Newsreader",Georgia,serif;
+    --label:"Unica One","IBM Plex Mono",ui-monospace,sans-serif;
+    --maxw:760px;
+    --pad:clamp(1.25rem,5vw,2rem);
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--serif);font-weight:300;font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    display:flex;flex-direction:column;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:rgba(181,26,26,.12);}
 
-    <link rel="stylesheet" href="https://use.typekit.net/rvs6lvg.css">
+  html[lang="fr"] .en, html:not([lang="fr"]) .fr{display:none !important;}
 
-    <link rel="stylesheet" href="style.css">
+  main{flex:1;display:flex;flex-direction:column;justify-content:center;
+    width:100%;max-width:var(--maxw);margin:0 auto;padding:3rem var(--pad);}
 
+  /* name — same treatment as on flavienganter.com, rule drawn on hover */
+  h1.name{margin:0;font-family:var(--label);font-weight:400;letter-spacing:.05em;line-height:1;
+    font-size:clamp(2.3rem,6.6vw,3.3rem);color:#2A2A2A;white-space:nowrap;}
+  h1.name a{position:relative;display:inline-block;transition:color .2s;
+    -webkit-text-stroke:.45px currentColor;paint-order:stroke fill;}
+  h1.name a:hover{color:var(--accent);}
+  h1.name a::after{content:"";position:absolute;left:calc(100% + .35em);top:55%;height:1px;width:0;
+    background:var(--ink-faint);transition:width .45s cubic-bezier(.3,.7,.2,1);}
+  h1.name a:hover::after{width:1.6em;}
+
+  /* links: horizontal rows, separated by middle dots (no ↗ here: every link leaves the page) */
+  nav{margin-top:2.4rem;display:grid;gap:1.1rem;}
+  .row{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem 0;margin:0;padding:0;list-style:none;
+    font-family:var(--label);font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;line-height:1;}
+  .row li{display:flex;align-items:center;}
+  .row li:not(:last-child)::after{content:"·";margin:0 .85rem;color:var(--ink-faint);}
+  .row a{position:relative;color:var(--ink);padding-bottom:3px;border-bottom:1px solid transparent;transition:color .15s,border-color .15s;}
+  .row a:hover{color:var(--accent);border-bottom-color:var(--accent-soft);}
+
+  /* ❡ at the foot of the page, aligned with the column */
+  .foot{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);}
+  .fleuron{margin:0;padding:3rem 0 2.75rem;line-height:1;}
+  .fleuron a{font-size:1.9rem;color:#8a8a8a;transition:color .2s;}
+  .fleuron a:hover{color:var(--accent);}
+
+  /* language tag, tucked against the bottom edge, just right of the column */
+  .lang{position:fixed;z-index:25;bottom:0;
+    left:min(calc(50% + var(--maxw)/2 - var(--pad) + 2.75rem), calc(100% - 5.6rem - env(safe-area-inset-right,0px)));
+    display:flex;align-items:center;gap:.4rem;line-height:1;white-space:nowrap;
+    font-family:var(--label);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);
+    background:var(--paper);border:1px solid var(--line);border-bottom:0;
+    padding:.6rem .75rem calc(.7rem + env(safe-area-inset-bottom,0px));}
+  .lang button{all:unset;cursor:pointer;color:var(--ink-faint);font:inherit;letter-spacing:inherit;}
+  .lang button:hover{color:var(--accent);}
+  .lang button:focus-visible{outline:1px dotted var(--accent);outline-offset:2px;}
+  html:not([lang="fr"]) .lang [data-l="en"], html[lang="fr"] .lang [data-l="fr"]{color:var(--ink);}
+
+  a:focus-visible{outline:1px dotted var(--accent);outline-offset:3px;}
+
+  @media (max-width:520px){
+    h1.name{white-space:normal;}
+    .row{font-size:.8rem;}
+  }
+</style>
 </head>
-
 
 <body>
 
-    <script src="language.js"></script>
-
-
-    <section class="top">
-
-        <div class="language-flag en">
-            <a href="#" onclick="setLanguage('fr'); return false;"><img src="img/flag_french.png" alt="Français" class="flag fr-flag"></a>
-        </div>
-    
-        <div class="language-flag fr">
-            <a href="#" onclick="setLanguage('en'); return false;"><img src="img/flag_us.png" alt="English" class="flag us-flag"></a>
-        </div>
-
-    </section>
-
-<div id="links">
-
-    <section class="header">
-            
-        
-        <div class="content">
-
-                <div class="page-title">
-                    <a href="#"><span class="name">Flavien Ganter</span></a>
-                </div>
-
-        </div>
-
-    </section>
-
-
-
-    <section class="main">
-
-        <div class="content">
-
-            <ul class="link_list en">
-                <li><a href="https://bsky.app/profile/flavienganter.com">Bluesky</a></li>
-                <li><a href="http://x.com/flavienganter">X / Twitter</a></li>
-                <li><a href="http://github.com/flavienganter">GitHub</a></li>
-                <li><a href="https://letterboxd.com/flaviengtr/">Letterboxd</a></li>
-                <li><a href="https://www.flickr.com/photos/flavienganter">Flickr</a></li>
-                <li><a href="http://www.flavienganter.com/">Professional Website</a></li>
-                <li><a href="https://www.eui.eu/people?id=flavien-ganter">European University Institute Profile</a></li>
-                <li><a href="https://www.flavienganter.com/contact.html">Contact</a></li>
-            </ul>
-
-            <ul class="link_list fr">
-                <li><a href="https://bsky.app/profile/flavienganter.com">Bluesky</a></li>
-                <li><a href="http://x.com/flavienganter">X / Twitter</a></li>
-                <li><a href="http://github.com/flavienganter">GitHub</a></li>
-                <li><a href="https://letterboxd.com/flaviengtr/">Letterboxd</a></li>
-                <li><a href="https://www.flickr.com/photos/flavienganter">Flickr</a></li>
-                <li><a href="http://www.flavienganter.com/">Site professionnel</a></li>
-                <li><a href="https://www.eui.eu/people?id=flavien-ganter">Profil Institut universitaire européen</a></li>
-                <li><a href="https://www.flavienganter.com/contact.html">Contact</a></li>
-            </ul>
-
-            <p class="psymbol"><a href="#">&#10081;</a></p>
-
-        </div>
-
-    </section>
-
+<div class="lang" role="group" aria-label="Language / Langue">
+  <button type="button" data-l="en">EN</button>
+  <span aria-hidden="true">/</span>
+  <button type="button" data-l="fr">FR</button>
 </div>
 
+<main id="top">
+  <h1 class="name"><a href="https://www.flavienganter.me/">Flavien Ganter</a></h1>
+
+  <nav aria-label="Links">
+    <ul class="row">
+      <li><a href="https://bsky.app/profile/flavienganter.com">Bluesky</a></li>
+      <li><a href="https://github.com/flavienganter">GitHub</a></li>
+      <li><a href="https://letterboxd.com/flaviengtr/">Letterboxd</a></li>
+      <li><a href="https://www.flickr.com/photos/flavienganter">Flickr</a></li>
+    </ul>
+    <ul class="row pro">
+      <li><a href="https://www.flavienganter.com/"><span class="en">Professional website</span><span class="fr">Site professionnel</span></a></li>
+      <li><a href="https://www.eui.eu/people?id=flavien-ganter"><span class="en">EUI profile</span><span class="fr">Profil IUE</span></a></li>
+      <li><a href="https://www.flavienganter.com/#contact">Contact</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer class="foot"><p class="fleuron"><a href="https://www.flavienganter.me/" title="flavienganter.me" aria-label="flavienganter.me">❡</a></p></footer>
+
+<script>
+  function setLanguage(l){
+    document.documentElement.lang = l;
+    try { localStorage.setItem('lang', l); } catch(e){}
+  }
+  document.querySelectorAll('.lang [data-l]').forEach(function(b){
+    b.addEventListener('click', function(){ setLanguage(b.getAttribute('data-l')); });
+  });
+</script>
 </body>
 </html>
